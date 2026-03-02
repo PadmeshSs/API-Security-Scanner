@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-    <div className="container h-screen bg-[#151520] p-5">
+    <div className="cont h-screen bg-[#151520] w-full">
       <Navbar/>
     </div>
       
