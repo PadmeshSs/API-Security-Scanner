@@ -1,9 +1,9 @@
-import { Card } from "./Card"
+import { Card } from "../../components/Card"
 import { Box, Typography } from "@mui/material"
 import { useTheme } from '@mui/material';
-import { tokens } from '../Themes';
+import { tokens } from '../../Themes';
 import {Divider} from "@mui/material";
-import DonutChart from "./DonutChart";
+import DonutChart from "../../components/DonutChart";
 
 type Stat = {
     title: string,

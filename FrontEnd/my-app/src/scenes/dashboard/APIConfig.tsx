@@ -1,6 +1,6 @@
 import { Box, Typography, Divider, Input, IconButton, Button } from "@mui/material";
-import { Card } from '../components/Card'
-import  CustomizedMenus from '../components/Menu'
+import { Card } from '../../components/Card'
+import  CustomizedMenus from '../../components/Menu'
 
 import { SearchOutlined } from "@mui/icons-material";
 

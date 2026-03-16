@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { tokens } from "../../Themes";
-import Chart from "../../components/Chart";
+import Chart from "./Chart";
 import StatCard from "../../components/Statcard"
-import APIConfig from "../../components/APIConfig";
-import Findings from "../../components/Findings";
+import APIConfig from "./APIConfig";
+import Findings from "./Findings";
 
 
 

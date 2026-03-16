@@ -1,6 +1,6 @@
-import { Card } from "./Card"
+import { Card } from "../../components/Card"
 import { Box, Divider, Typography } from "@mui/material"
-import VulnerabilityTable from "./Tables";
+import VulnerabilityTable from "../../components/Tables";
 
 
 export default function Findings () {
