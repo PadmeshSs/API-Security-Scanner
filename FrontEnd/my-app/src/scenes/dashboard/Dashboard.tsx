@@ -33,7 +33,7 @@ export default function Dashboard() {
     const [url, setUrl] = useState("");
     const [method, setMethod] = useState<"GET" | "POST">("GET");
     const [headers, setHeaders] = useState<Record<string, string>>({});
-    const stats = [
+    const stats: Stat[] = [
         { 
             title: "Total Issues", 
             value: data?.total ?? 0, 

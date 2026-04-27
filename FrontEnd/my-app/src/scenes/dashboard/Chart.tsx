@@ -5,7 +5,7 @@ import { tokens } from '../../Themes';
 import DonutChart from "../../components/DonutChart";
 import type { ScanResponse } from "../Types/Globaltypes";
 
-// Define the props type
+
 type ChartProps = {
     data: ScanResponse | null;
 }
@@ -14,7 +14,7 @@ export default function Chart({ data }: ChartProps) {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
-    // Map the titles to the actual keys in your JSON data
+
     const stats = [
         { title: "Critical", color: colors.Severity.Critical, value: data?.critical || 0 },
         { title: "High", color: colors.Severity.High, value: data?.high || 0 },

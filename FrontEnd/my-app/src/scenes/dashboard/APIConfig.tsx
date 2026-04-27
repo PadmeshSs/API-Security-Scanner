@@ -7,7 +7,6 @@ import type { Dispatch, SetStateAction } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import type { headerType } from "../Types/Globaltypes";
 
-// 1. Define the Props Interface
 type APIconfigprops = {
   loading: boolean;
   startscan: () => void;
@@ -29,10 +28,10 @@ export default function APIConfig({
   setHeaders, 
   error 
 }: APIconfigprops) {
-  // Local state for the UI list (manages the dynamic rows)
+
   const [headerList, setHeaderList] = useState<headerType[]>([]);
 
-  // 2. Sync local list to the Parent's Record object
+
   useEffect(() => {
     const formattedHeaders = headerList.reduce((acc, curr) => {
       if (curr.key.trim()) acc[curr.key] = curr.value;
@@ -95,7 +94,6 @@ export default function APIConfig({
 
           <CustomizedMenus
             role="dropdown"
-            // Display current method as label if your menu component supports it
             items={[
               { label: 'GET', onclick: () => handleMethodChange('GET') },
               { label: 'POST', onclick: () => handleMethodChange('POST') },

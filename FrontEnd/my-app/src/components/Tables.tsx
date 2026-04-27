@@ -11,12 +11,12 @@ import {
 import { useTheme } from '@mui/material';
 import { tokens } from '../Themes';
 
-// Match the structure of your JSON 'findings' array
+
 type Vulnerability = {
   type: string;
   severity: string;
   endpoint: string;
-  status: number; // Changed from statusCode to match JSON
+  status: number; 
   impact: string;
 };
 
