@@ -74,6 +74,8 @@ export default function Dashboard() {
             setLoading(false);
         }
     };
+    console.log(data)
+    console.log( url, method, headers )
 
     return (
         <Box p="20px" display="flex" flexDirection="column" flex={1}>
