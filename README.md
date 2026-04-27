@@ -109,7 +109,18 @@ Comparison        → Detect vulnerability
 ```
  
 ---
- 
+
+## 🚀 Working
+
+### Before changes
+![Screenshot](./FrontEnd/my-app/src/assets/api_1.png)
+
+
+### After get request with headers
+![Screenshot](./FrontEnd/my-app/src/assets/api_3.png)
+
+---
+
 ## 🔄 Application Flow
  
 ```
@@ -132,6 +143,7 @@ Frontend updates UI dynamically
 ```
  
 ---
+Demos
  
 ## 🖥️ Running the Project
  
