@@ -1,6 +1,5 @@
 import {
   Chip,
-  colors,
   Table,
   TableBody,
   TableCell,
@@ -12,76 +11,49 @@ import {
 import { useTheme } from '@mui/material';
 import { tokens } from '../Themes';
 
+// Match the structure of your JSON 'findings' array
 type Vulnerability = {
   type: string;
   severity: string;
   endpoint: string;
-  statusCode: number;
+  status: number; // Changed from statusCode to match JSON
   impact: string;
 };
 
-const rows: Vulnerability[] = [
-  {
-    type: "SQL Injection",
-    severity: "Critical",
-    endpoint: "/api/users",
-    statusCode: 500,
-    impact: "Database exposure"
-  },
-  {
-    type: "XSS",
-    severity: "High",
-    endpoint: "/search",
-    statusCode: 200,
-    impact: "Session hijacking"
-  },
-  {
-    type: "Open Redirect",
-    severity: "Medium",
-    endpoint: "/redirect",
-    statusCode: 302,
-    impact: "Phishing attacks"
-  },
-  {
-    type: "Missing Headers",
-    severity: "Low",
-    endpoint: "/login",
-    statusCode: 200,
-    impact: "Security misconfiguration"
-  }
-];
+type TableProps = {
+  rows: Vulnerability[];
+};
 
+export default function VulnerabilityTable({ rows }: TableProps) {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
-
-export default function VulnerabilityTable() {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
-
-    const getSeverityColor = (severity: string) => {
-        switch (severity) {
-            case "Critical":
-            return  colors.Severity.Critical
-            case "High":
-            return colors.Severity.High // orange
-            case "Medium":
-            return colors.Severity.Medium // yellow
-            case "Low":
-            return colors.Severity.Low // blue
-            default:
-            return "#9e9e9e";
-        }
-    };
+  const getSeverityColor = (severity: string) => {
+    // .toUpperCase() ensures it matches "CRITICAL" from your JSON
+    switch (severity.toUpperCase()) {
+      case "CRITICAL":
+        return colors.Severity.Critical;
+      case "HIGH":
+        return colors.Severity.High;
+      case "MEDIUM":
+        return colors.Severity.Medium;
+      case "LOW":
+        return colors.Severity.Low;
+      default:
+        return "#9e9e9e";
+    }
+  };
 
   return (
     <TableContainer sx={{
-        backgroundColor: colors.box[500],
-        borderRadius: 2,
-        boxShadow: "0px 4px 12px rgba(0,0,0,0.35)",
-        border: `1px solid ${colors.box[600]}`,
-      }}>
-      <Table sx={{minWidth: 700}}>
+      backgroundColor: colors.box[500],
+      borderRadius: 2,
+      boxShadow: "0px 4px 12px rgba(0,0,0,0.35)",
+      border: `1px solid ${colors.box[600]}`,
+    }}>
+      <Table sx={{ minWidth: 700 }}>
         <TableHead>
-          <TableRow >
+          <TableRow>
             <TableCell><Typography fontWeight={700}>Type</Typography></TableCell>
             <TableCell><Typography fontWeight={700}>Severity</Typography></TableCell>
             <TableCell><Typography fontWeight={700}>Endpoint</Typography></TableCell>
@@ -91,29 +63,35 @@ export default function VulnerabilityTable() {
         </TableHead>
 
         <TableBody>
-          {rows.map((row, index) => (
-            <TableRow key={index} hover sx={{
-            height: "70px !important",
-          }}>
-              <TableCell>{row.type}</TableCell>
+          {rows.length === 0 ? (
+            <TableRow>
+              <TableCell colSpan={5} align="center">
+                <Typography variant="body2" sx={{ py: 2 }}>No vulnerabilities found.</Typography>
+              </TableCell>
+            </TableRow>
+          ) : (
+            rows.map((row, index) => (
+              <TableRow key={index} hover sx={{ height: "70px !important" }}>
+                <TableCell>{row.type}</TableCell>
                 <TableCell>
-                <Chip
+                  <Chip
                     label={row.severity}
                     sx={{
-                    backgroundColor: getSeverityColor(row.severity),
-                    color: row.severity === "Medium" ? "black" : "white",
-                    fontWeight: 600,
-                    width: '100px',
-                    borderRadius: 2
+                      backgroundColor: getSeverityColor(row.severity),
+                      color: row.severity.toUpperCase() === "MEDIUM" ? "black" : "white",
+                      fontWeight: 600,
+                      width: '100px',
+                      borderRadius: 2
                     }}
                     size="small"
-                />
+                  />
                 </TableCell>
-              <TableCell>{row.endpoint}</TableCell>
-              <TableCell>{row.statusCode}</TableCell>
-              <TableCell>{row.impact}</TableCell>
-            </TableRow>
-          ))}
+                <TableCell>{row.endpoint}</TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell>{row.impact}</TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </TableContainer>
